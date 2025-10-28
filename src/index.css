@@ -5,5 +5,51 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: none;
+  background-image: url('./assets/image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* darkness overlay */
+  backdrop-filter: blur(6px); /* adds a soft blur */
+  -webkit-backdrop-filter: blur(6px); /* Safari support */
+  z-index: -1; /* keeps it behind all content */
+}
+
+/* keep both keyframe names for compatibility */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* mapping classes — safe for older class variants used across files */
+.animate-fade-in,
+.animate-fade,
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out;
 }

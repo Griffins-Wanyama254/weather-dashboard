@@ -2,12 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global font + smooth animations */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: none; /* Allow App.jsx gradient to show */
+  background: none; /* background handled by index.css */
+  color: #fff;
+  transition: background 0.4s ease-in-out, color 0.3s ease-in-out;
+  overflow-x: hidden;
 }
 
+/* Button hover and transitions */
 button {
   cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Add gentle hover scale for interactive elements */
+button:hover,
+select:hover,
+input:hover {
+  transform: scale(0.52);
+}
+
+/* Card & glass components */
+.glass-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 1.2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle fade-in animation (named variant) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Expose multiple class names that map to the same animation so components won't break */
+.animate-fade,
+.animate-fade-in,
+.animate-fadeIn {
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+/* Responsive text glow */
+h1,
+h2,
+h3 {
+  text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+}
+
+/* Placeholder text refinement */
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+/* For backdrop blur compatibility on Safari */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .glass-card {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
 }
